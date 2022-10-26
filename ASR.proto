@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package ASR;
+
+service ASR {
+   rpc test(SpeechRecognitionMessage) returns (SpeechRecognitionMessage) {}
+   rpc recognize(stream SpeechRecognitionRequest) returns (stream SpeechRecognitionResponse) {}
+}
+
+message SpeechRecognitionMessage{
+  string id = 1;
+  string message = 2;
+}
+
+message SpeechRecognitionRequest {
+  string id = 1;
+  bytes speechVoice = 2;
+}
+
+message SpeechRecognitionResponse {
+  string id = 1;
+  string transcribedText = 2;
+  bool isFinal = 3;
+}
